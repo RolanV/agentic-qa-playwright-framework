@@ -1,0 +1,83 @@
+{
+  "id": "SD-T-302",
+  "story": "SD-103",
+  "title": "[UI][Checkout] Each required information field is validated",
+  "priority": "High",
+  "labels": [
+    "ui",
+    "checkout",
+    "regression",
+    "negative"
+  ],
+  "precondition": "Standard user has 1 product in the cart and is on \"Checkout: Your Information\".",
+  "gherkin": "Given I am on the checkout information form\nWhen I leave <field> empty and click Continue\nThen I see <error>\nAnd I stay on the information form",
+  "steps": [
+    {
+      "action": "Fill every field except {{field}}",
+      "data": "dataset row",
+      "expected": "Form is partially filled"
+    },
+    {
+      "action": "Click Continue",
+      "expected": "Error \"{{error}}\" is shown"
+    },
+    {
+      "action": "Look at the page",
+      "expected": "User stays on \"Checkout: Your Information\""
+    }
+  ],
+  "dataset": [
+    {
+      "field": "First Name",
+      "error": "Error: First Name is required"
+    },
+    {
+      "field": "Last Name",
+      "error": "Error: Last Name is required"
+    },
+    {
+      "field": "Postal Code",
+      "error": "Error: Postal Code is required"
+    }
+  ],
+  "status": "Manual",
+  "automation": null,
+  "signoffs": [
+    {
+      "role": "Primary QA",
+      "by": "qa.lead",
+      "at": "2026-11-05T14:00:00.000Z"
+    },
+    {
+      "role": "Developer",
+      "by": "dev.alex",
+      "at": "2026-11-05T14:00:00.000Z"
+    },
+    {
+      "role": "Second QA",
+      "by": "qa.sam",
+      "at": "2026-11-05T14:00:00.000Z"
+    }
+  ],
+  "history": [
+    {
+      "at": "2026-11-02T09:00:00.000Z",
+      "by": "qa.lead",
+      "to": "Test Writing In Progress",
+      "note": "Published from artifacts/test-cases"
+    },
+    {
+      "at": "2026-11-02T09:00:00.000Z",
+      "by": "qa.lead",
+      "from": "Test Writing In Progress",
+      "to": "Review Needed for Manual Test"
+    },
+    {
+      "at": "2026-11-05T14:00:00.000Z",
+      "by": "qa.lead",
+      "from": "Review Needed for Manual Test",
+      "to": "Manual",
+      "note": "3/3 sign-offs"
+    }
+  ]
+}

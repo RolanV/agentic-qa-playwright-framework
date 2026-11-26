@@ -1,0 +1,99 @@
+{
+  "id": "SD-T-103",
+  "story": "SD-101",
+  "title": "[UI][Login] Invalid login is rejected",
+  "priority": "High",
+  "labels": [
+    "ui",
+    "login",
+    "regression",
+    "negative"
+  ],
+  "precondition": "User is on the login page and logged out.",
+  "steps": [
+    {
+      "action": "Submit invalid credentials from the dataset",
+      "data": "{{username}} / {{password}}",
+      "expected": "Login is rejected"
+    },
+    {
+      "action": "Read the error message",
+      "expected": "Error matches {{error}}"
+    }
+  ],
+  "dataset": [
+    {
+      "case": "wrong password",
+      "username": "standard_user",
+      "password": "nope",
+      "error": "Epic sadface: Username and password do not match any user in this service"
+    },
+    {
+      "case": "empty username",
+      "username": "",
+      "password": "x",
+      "error": "Epic sadface: Username is required"
+    },
+    {
+      "case": "empty password",
+      "username": "someone",
+      "password": "",
+      "error": "Epic sadface: Password is required"
+    }
+  ],
+  "status": "Automation",
+  "automation": {
+    "spec": "tests/ui/login.spec.ts"
+  },
+  "signoffs": [
+    {
+      "role": "Primary QA",
+      "by": "qa.lead",
+      "at": "2026-11-05T14:00:00.000Z"
+    },
+    {
+      "role": "Developer",
+      "by": "dev.alex",
+      "at": "2026-11-05T14:00:00.000Z"
+    },
+    {
+      "role": "Second QA",
+      "by": "qa.sam",
+      "at": "2026-11-05T14:00:00.000Z"
+    }
+  ],
+  "history": [
+    {
+      "at": "2026-11-02T09:00:00.000Z",
+      "by": "qa.lead",
+      "to": "Test Writing In Progress",
+      "note": "Published from artifacts/test-cases"
+    },
+    {
+      "at": "2026-11-02T09:00:00.000Z",
+      "by": "qa.lead",
+      "from": "Test Writing In Progress",
+      "to": "Review Needed for Manual Test"
+    },
+    {
+      "at": "2026-11-05T14:00:00.000Z",
+      "by": "qa.lead",
+      "from": "Review Needed for Manual Test",
+      "to": "Manual",
+      "note": "3/3 sign-offs"
+    },
+    {
+      "at": "2026-11-12T10:30:00.000Z",
+      "by": "automation.bot",
+      "from": "Manual",
+      "to": "Automation In Progress"
+    },
+    {
+      "at": "2026-11-18T16:00:00.000Z",
+      "by": "qa.lead",
+      "from": "Automation In Progress",
+      "to": "Automation",
+      "note": "PR merged"
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+# Humans who must approve. Agents open PRs; these people review and merge.
+*                     @qa-leads
+/src/                 @qa-leads @framework-owners
+/.claude/             @framework-owners
+/.github/             @framework-owners
+/playwright.config.ts @framework-owners

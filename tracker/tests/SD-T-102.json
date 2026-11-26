@@ -1,0 +1,79 @@
+{
+  "id": "SD-T-102",
+  "story": "SD-101",
+  "title": "[UI][Login] Locked-out user sees a lockout error",
+  "priority": "High",
+  "labels": [
+    "ui",
+    "login",
+    "regression",
+    "negative"
+  ],
+  "precondition": "User is on the login page and logged out.",
+  "steps": [
+    {
+      "action": "Submit credentials of the locked-out user",
+      "data": "locked_out_user / secret_sauce",
+      "expected": "Login is rejected"
+    },
+    {
+      "action": "Read the error message",
+      "expected": "Error \"Epic sadface: Sorry, this user has been locked out.\" is shown; user stays on login"
+    }
+  ],
+  "status": "Automation",
+  "automation": {
+    "spec": "tests/ui/login.spec.ts"
+  },
+  "signoffs": [
+    {
+      "role": "Primary QA",
+      "by": "qa.lead",
+      "at": "2026-11-05T14:00:00.000Z"
+    },
+    {
+      "role": "Developer",
+      "by": "dev.alex",
+      "at": "2026-11-05T14:00:00.000Z"
+    },
+    {
+      "role": "Second QA",
+      "by": "qa.sam",
+      "at": "2026-11-05T14:00:00.000Z"
+    }
+  ],
+  "history": [
+    {
+      "at": "2026-11-02T09:00:00.000Z",
+      "by": "qa.lead",
+      "to": "Test Writing In Progress",
+      "note": "Published from artifacts/test-cases"
+    },
+    {
+      "at": "2026-11-02T09:00:00.000Z",
+      "by": "qa.lead",
+      "from": "Test Writing In Progress",
+      "to": "Review Needed for Manual Test"
+    },
+    {
+      "at": "2026-11-05T14:00:00.000Z",
+      "by": "qa.lead",
+      "from": "Review Needed for Manual Test",
+      "to": "Manual",
+      "note": "3/3 sign-offs"
+    },
+    {
+      "at": "2026-11-12T10:30:00.000Z",
+      "by": "automation.bot",
+      "from": "Manual",
+      "to": "Automation In Progress"
+    },
+    {
+      "at": "2026-11-18T16:00:00.000Z",
+      "by": "qa.lead",
+      "from": "Automation In Progress",
+      "to": "Automation",
+      "note": "PR merged"
+    }
+  ]
+}

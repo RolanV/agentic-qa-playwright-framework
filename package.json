@@ -1,0 +1,42 @@
+{
+  "name": "agentic-qa-framework",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Educational Playwright + TypeScript test automation framework driven by Claude Code agents, skills and human approval gates.",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "test": "playwright test --project=ui-chromium --project=api",
+    "test:ui": "playwright test --project=ui-chromium",
+    "test:api": "playwright test --project=api",
+    "test:smoke": "playwright test --grep @smoke",
+    "test:temp": "playwright test --project=temp",
+    "report": "playwright show-report",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "typecheck": "tsc --noEmit",
+    "validate": "tsx scripts/validate.ts",
+    "tracker": "tsx scripts/tracker.ts",
+    "create-test": "tsx scripts/create-test.ts",
+    "promote-test": "tsx scripts/promote-test.ts",
+    "check": "npm run lint && npm run typecheck && npm run validate && npm run test:unit",
+    "test:unit": "tsx --test scripts/*.test.ts && node --test .claude/hooks/hooks.test.mjs"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@faker-js/faker": "^10.6.0",
+    "@playwright/test": "^1.65.1",
+    "@types/node": "^26.6.11",
+    "dotenv": "^18.0.10",
+    "eslint": "^10.15.0",
+    "eslint-plugin-playwright": "^2.12.2",
+    "prettier": "^3.10.1",
+    "tsx": "^4.23.15",
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.74.0",
+    "zod": "^4.6.7"
+  }
+}

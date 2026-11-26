@@ -1,0 +1,77 @@
+{
+  "id": "SD-T-301",
+  "story": "SD-103",
+  "title": "[UI][Checkout] Standard user completes a purchase of two products",
+  "priority": "Critical",
+  "labels": [
+    "ui",
+    "checkout",
+    "smoke",
+    "positive"
+  ],
+  "precondition": "Standard user is logged in on the Products page with an empty cart.",
+  "gherkin": "Given I am logged in with an empty cart\nWhen I buy \"Sauce Labs Backpack\" and \"Sauce Labs Bike Light\" with valid details\nThen I see \"Thank you for your order!\"\nAnd the cart is empty",
+  "steps": [
+    {
+      "action": "Add \"Sauce Labs Backpack\" and \"Sauce Labs Bike Light\" to the cart",
+      "expected": "Cart badge shows 2"
+    },
+    {
+      "action": "Open the cart and click Checkout",
+      "expected": "Page title is \"Checkout: Your Information\""
+    },
+    {
+      "action": "Enter first name, last name and postal code, then click Continue",
+      "data": "random valid values",
+      "expected": "Overview page lists both products"
+    },
+    {
+      "action": "Click Finish",
+      "expected": "Header \"Thank you for your order!\" is shown"
+    },
+    {
+      "action": "Look at the cart icon",
+      "expected": "Cart badge is no longer shown"
+    }
+  ],
+  "status": "Manual",
+  "automation": null,
+  "signoffs": [
+    {
+      "role": "Primary QA",
+      "by": "qa.lead",
+      "at": "2026-11-05T14:00:00.000Z"
+    },
+    {
+      "role": "Developer",
+      "by": "dev.alex",
+      "at": "2026-11-05T14:00:00.000Z"
+    },
+    {
+      "role": "Second QA",
+      "by": "qa.sam",
+      "at": "2026-11-05T14:00:00.000Z"
+    }
+  ],
+  "history": [
+    {
+      "at": "2026-11-02T09:00:00.000Z",
+      "by": "qa.lead",
+      "to": "Test Writing In Progress",
+      "note": "Published from artifacts/test-cases"
+    },
+    {
+      "at": "2026-11-02T09:00:00.000Z",
+      "by": "qa.lead",
+      "from": "Test Writing In Progress",
+      "to": "Review Needed for Manual Test"
+    },
+    {
+      "at": "2026-11-05T14:00:00.000Z",
+      "by": "qa.lead",
+      "from": "Review Needed for Manual Test",
+      "to": "Manual",
+      "note": "3/3 sign-offs"
+    }
+  ]
+}

@@ -1,0 +1,76 @@
+{
+  "id": "SD-T-303",
+  "story": "SD-103",
+  "title": "[UI][Checkout] Overview totals are calculated correctly",
+  "priority": "High",
+  "labels": [
+    "ui",
+    "checkout",
+    "regression",
+    "calculation"
+  ],
+  "precondition": "Standard user is logged in on the Products page with an empty cart.",
+  "gherkin": "Given my cart holds \"Sauce Labs Backpack\" ($29.99) and \"Sauce Labs Fleece Jacket\" ($49.99)\nWhen I reach the checkout overview\nThen Item total is $79.98, Tax is $6.40 and Total is $86.38",
+  "steps": [
+    {
+      "action": "Add \"Sauce Labs Backpack\" and \"Sauce Labs Fleece Jacket\" to the cart",
+      "expected": "Badge shows 2"
+    },
+    {
+      "action": "Go through Checkout with valid information to the Overview page",
+      "expected": "Overview lists both products with prices $29.99 and $49.99"
+    },
+    {
+      "action": "Read Item total",
+      "expected": "Item total equals the sum of item prices: $79.98"
+    },
+    {
+      "action": "Read Tax",
+      "expected": "Tax is 8% of item total rounded to cents: $6.40"
+    },
+    {
+      "action": "Read Total",
+      "expected": "Total equals Item total + Tax: $86.38"
+    }
+  ],
+  "status": "Manual",
+  "automation": null,
+  "signoffs": [
+    {
+      "role": "Primary QA",
+      "by": "qa.lead",
+      "at": "2026-11-05T14:00:00.000Z"
+    },
+    {
+      "role": "Developer",
+      "by": "dev.alex",
+      "at": "2026-11-05T14:00:00.000Z"
+    },
+    {
+      "role": "Second QA",
+      "by": "qa.sam",
+      "at": "2026-11-05T14:00:00.000Z"
+    }
+  ],
+  "history": [
+    {
+      "at": "2026-11-02T09:00:00.000Z",
+      "by": "qa.lead",
+      "to": "Test Writing In Progress",
+      "note": "Published from artifacts/test-cases"
+    },
+    {
+      "at": "2026-11-02T09:00:00.000Z",
+      "by": "qa.lead",
+      "from": "Test Writing In Progress",
+      "to": "Review Needed for Manual Test"
+    },
+    {
+      "at": "2026-11-05T14:00:00.000Z",
+      "by": "qa.lead",
+      "from": "Review Needed for Manual Test",
+      "to": "Manual",
+      "note": "3/3 sign-offs"
+    }
+  ]
+}

@@ -1,0 +1,73 @@
+{
+  "id": "BK-T-104",
+  "story": "BK-201",
+  "title": "[API][Booking] Partial update changes only the patched fields",
+  "priority": "Medium",
+  "labels": [
+    "api",
+    "booking",
+    "regression"
+  ],
+  "precondition": "Auth token obtained via POST /auth.",
+  "steps": [
+    {
+      "action": "PATCH firstname + totalprice",
+      "expected": "200 and only patched fields differ"
+    }
+  ],
+  "status": "Automation",
+  "automation": {
+    "spec": "tests/api/booking.spec.ts"
+  },
+  "signoffs": [
+    {
+      "role": "Primary QA",
+      "by": "qa.lead",
+      "at": "2026-11-05T14:00:00.000Z"
+    },
+    {
+      "role": "Developer",
+      "by": "dev.alex",
+      "at": "2026-11-05T14:00:00.000Z"
+    },
+    {
+      "role": "Second QA",
+      "by": "qa.sam",
+      "at": "2026-11-05T14:00:00.000Z"
+    }
+  ],
+  "history": [
+    {
+      "at": "2026-11-02T09:00:00.000Z",
+      "by": "qa.lead",
+      "to": "Test Writing In Progress",
+      "note": "Published from artifacts/test-cases"
+    },
+    {
+      "at": "2026-11-02T09:00:00.000Z",
+      "by": "qa.lead",
+      "from": "Test Writing In Progress",
+      "to": "Review Needed for Manual Test"
+    },
+    {
+      "at": "2026-11-05T14:00:00.000Z",
+      "by": "qa.lead",
+      "from": "Review Needed for Manual Test",
+      "to": "Manual",
+      "note": "3/3 sign-offs"
+    },
+    {
+      "at": "2026-11-12T10:30:00.000Z",
+      "by": "automation.bot",
+      "from": "Manual",
+      "to": "Automation In Progress"
+    },
+    {
+      "at": "2026-11-18T16:00:00.000Z",
+      "by": "qa.lead",
+      "from": "Automation In Progress",
+      "to": "Automation",
+      "note": "PR merged"
+    }
+  ]
+}

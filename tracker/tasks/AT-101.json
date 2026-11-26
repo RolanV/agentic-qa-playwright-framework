@@ -1,0 +1,27 @@
+{
+  "id": "AT-101",
+  "testId": "SD-T-101",
+  "summary": "Automate SD-T-101",
+  "status": "DONE",
+  "comments": [
+    {
+      "at": "2026-11-18T16:00:00.000Z",
+      "by": "automation.bot",
+      "text": "Automated. Branch test/SD-T-101, 100% passing, PR #12 merged."
+    }
+  ],
+  "history": [
+    {
+      "at": "2026-11-12T10:30:00.000Z",
+      "by": "automation.bot",
+      "from": "TO DO",
+      "to": "IN PROGRESS"
+    },
+    {
+      "at": "2026-11-18T16:00:00.000Z",
+      "by": "qa.lead",
+      "from": "IN PROGRESS",
+      "to": "DONE"
+    }
+  ]
+}

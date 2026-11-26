@@ -1,0 +1,13 @@
+node_modules/
+.env
+test-results/
+playwright-report/
+blob-report/
+.auth/
+# Agent-generated specs live here until they are green AND promoted. Never committed.
+tests/.temp/*
+!tests/.temp/.gitkeep
+# Local agent audit trail
+.claude/audit.log
+.claude/settings.local.json
+.DS_Store
