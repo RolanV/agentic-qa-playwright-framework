@@ -2,7 +2,7 @@
   "id": "SD-T-402",
   "story": "SD-104",
   "title": "[UI][Sorting] Products are sorted by name A to Z by default",
-  "status": "Automation In Progress",
+  "status": "Automation",
   "priority": "Low",
   "labels": [
     "ui",
@@ -22,7 +22,9 @@
     }
   ],
   "gherkin": "Given I have just logged in as a standard user\nThen the sort dropdown shows \"Name (A to Z)\"\nAnd the six products are listed alphabetically by name",
-  "automation": null,
+  "automation": {
+    "spec": "tests/ui/sorting-SD-T-402.spec.ts"
+  },
   "signoffs": [
     {
       "role": "Primary QA",
@@ -66,6 +68,13 @@
       "from": "Manual",
       "to": "Automation In Progress",
       "note": "Automation started"
+    },
+    {
+      "at": "2026-11-27T21:51:58.860Z",
+      "by": "rolan",
+      "from": "Automation In Progress",
+      "to": "Automation",
+      "note": "Spec promoted; PR open"
     }
   ]
 }

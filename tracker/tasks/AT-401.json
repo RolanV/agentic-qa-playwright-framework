@@ -2,8 +2,14 @@
   "id": "AT-401",
   "testId": "SD-T-401",
   "summary": "Automate SD-T-401",
-  "status": "IN PROGRESS",
-  "comments": [],
+  "status": "DONE",
+  "comments": [
+    {
+      "at": "2026-11-27T21:51:09.415Z",
+      "by": "rolan",
+      "text": "Automated in tests/ui/sorting-SD-T-401.spec.ts. Branch test/SD-T-401-402-405-sorting-batch (commit 3e40535). 1/1 passing. PR: https://github.com/RolanV/agentic-qa-playwright-framework/pull/3"
+    }
+  ],
   "history": [
     {
       "at": "2026-11-26T23:59:42.586Z",
@@ -17,6 +23,13 @@
       "from": "TO DO",
       "to": "IN PROGRESS",
       "note": "Automation started"
+    },
+    {
+      "at": "2026-11-27T21:51:10.075Z",
+      "by": "rolan",
+      "from": "IN PROGRESS",
+      "to": "DONE",
+      "note": "PR opened"
     }
   ]
 }
