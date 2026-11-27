@@ -8,6 +8,8 @@
  * WRITE (gated: .claude/settings.json "ask" + approval-gate hook):
  *   move <ID> "<STATUS>" [--note "..."] [--spec path]   transition a test or task
  *   signoff <TEST-ID> --role "Primary QA" [--by name]   record one of the 3 sign-offs
+ *   update <TEST-ID> --file fields.json [--note "..."]   edit content; null clears gherkin/dataset; resets sign-offs
+ *   create-task <TEST-ID> [--summary "..."]             add an automation task (TO DO) for a signed-off test
  *   comment <ID> "<text>"                              add a comment to a task
  *   publish <artifact.md> [--select TC-1,TC-3]          create tests from draft cases (Step 3)
  *   notify "<message>" [--channel qa-automation]        mock Slack post (Step 8)
@@ -25,6 +27,9 @@ import {
   SIGNOFF_ROLES,
   DraftTestCaseSchema,
   TestCaseSchema,
+  TestCaseEditSchema,
+  TaskSchema,
+  EDITABLE_STATUSES,
   loadDocs,
   loadTests,
   loadTasks,
@@ -228,6 +233,75 @@ const commands: Record<string, () => void> = {
       console.log(`✔ ${draftId} → ${next}  ${test.title}`);
     }
     console.log(`\nPublished ${created.length} test(s) in status "Test Writing In Progress".`);
+  },
+
+  update() {
+    const id = rest[0] ?? fail('Usage: update <TEST-ID> --file <fields.json> [--note "..."]');
+    const file = flag('file') ?? fail('--file <fields.json> is required');
+    const note = flag('note');
+    const by = actor();
+    const test = findTest(id) ?? fail(`No test ${id}`);
+    if (!(EDITABLE_STATUSES as readonly string[]).includes(test.status)) {
+      fail(
+        `${id} is "${test.status}" and its content is frozen. Only ${EDITABLE_STATUSES.join(' / ')} can be edited. ` +
+          'Sign-off froze it; reopening a signed-off test is a deliberate human decision.',
+      );
+    }
+    if (!existsSync(resolve(ROOT, file))) fail(`File not found: ${file}`);
+    const parsed = TestCaseEditSchema.safeParse(JSON.parse(readFileSync(resolve(ROOT, file), 'utf8')));
+    if (!parsed.success) fail(`Invalid fields in ${file}:\n${parsed.error.message}`);
+    const fields = Object.keys(parsed.data);
+    if (fields.length === 0) fail('Nothing to update: the file has no editable fields');
+
+    const hadSignoffs = test.signoffs.length;
+    const merged: Record<string, unknown> = { ...test, ...parsed.data };
+    for (const key of ['gherkin', 'dataset'] as const) if (merged[key] === null) delete merged[key]; // null clears
+    const updated: TestCase = TestCaseSchema.parse({
+      ...merged,
+      signoffs: [], // an edit invalidates earlier approvals: they approved different content
+      history: [
+        ...test.history,
+        {
+          at: now(),
+          by,
+          note: `Edited: ${fields.join(', ')}${hadSignoffs ? ` (${hadSignoffs} sign-off(s) reset)` : ''}${note ? ` - ${note}` : ''}`,
+        },
+      ],
+    });
+    saveJson(testPath(id), updated);
+    console.log(`✔ ${id} updated: ${fields.join(', ')}`);
+    if (hadSignoffs)
+      console.log(`  ⚠ ${hadSignoffs} existing sign-off(s) were reset. Reviewers must sign off again.`);
+  },
+
+  'create-task'() {
+    const testId = rest[0] ?? fail('Usage: create-task <TEST-ID> [--summary "..."]');
+    const summary = flag('summary');
+    const by = actor();
+    const test = findTest(testId) ?? fail(`No test ${testId}`);
+    if (!['Manual', 'Automation In Progress', 'Automation'].includes(test.status)) {
+      fail(`${testId} is "${test.status}". Only signed-off tests (Manual or later) get an automation task.`);
+    }
+    const existing = loadTasks();
+    const dup = existing.find((t) => t.testId === testId);
+    if (dup) fail(`${testId} already has task ${dup.id} (${dup.status})`);
+
+    // Prefer the test's own number (SD-T-404 -> AT-404); fall back to the next free number if taken (BK-T-101 vs SD-T-101).
+    const taken = new Set(existing.map((t) => t.id));
+    let n = Number(testId.split('-').pop());
+    if (taken.has(`AT-${n}`)) n = Math.max(1000, ...existing.map((t) => Number(t.id.slice(3)))) + 1;
+    const id = `AT-${n}`;
+
+    const task: Task = TaskSchema.parse({
+      id,
+      testId,
+      summary: summary ?? `Automate ${testId}`,
+      status: 'TO DO',
+      comments: [],
+      history: [{ at: now(), by, to: 'TO DO', note: `Created for ${testId}` }],
+    });
+    saveJson(taskPath(id), task);
+    console.log(`✔ ${id} created (TO DO): ${task.summary}`);
   },
 
   notify() {

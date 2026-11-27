@@ -31,6 +31,8 @@
       "Bash(npm run tracker -- move:*)",
       "Bash(npm run tracker -- comment:*)",
       "Bash(npm run tracker -- publish:*)",
+      "Bash(npm run tracker -- update:*)",
+      "Bash(npm run tracker -- create-task:*)",
       "Bash(npm run tracker -- notify:*)",
       "Bash(git checkout -b:*)",
       "Bash(git switch -c:*)",

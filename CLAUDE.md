@@ -34,7 +34,7 @@ Orchestrated by the `/qa-pipeline` skill. Each step's output is a **file** (the 
 | All tests | `npm test` (UI + API) · `npm run test:smoke` · `npm run test:temp` (sandbox) |
 | Quality gates | `npm run check` (lint + typecheck + tracker validation + hook tests) |
 | Tracker read | `npm run tracker -- list [tests\|tasks\|stories]` · `npm run tracker -- show <ID>` |
-| Tracker write (gated) | `npm run tracker -- move <ID> "<STATUS>"` · `comment` · `publish` · `notify` |
+| Tracker write (gated) | `npm run tracker -- move <ID> "<STATUS>"` · `comment` · `publish` · `update` · `create-task` · `notify` |
 | Step 5 helpers | `npm run create-test -- <TEST-ID>` · `npm run promote-test -- <tests/.temp/…spec.ts>` |
 
 ## Where things go

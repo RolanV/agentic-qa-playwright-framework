@@ -93,6 +93,28 @@ export const DraftTestCaseSchema = TestCaseSchema.pick({
   dataset: true,
 }).extend({ draftId: z.string().regex(/^TC-\d+$/) });
 
+/**
+ * The ONLY fields `tracker update` may change. id, story, status, automation, signoffs and history
+ * are owned by the workflow (publish / move / signoff) and can never be patched from a file.
+ */
+export const TestCaseEditSchema = TestCaseSchema.pick({
+  title: true,
+  priority: true,
+  labels: true,
+  precondition: true,
+  steps: true,
+})
+  .partial()
+  .extend({
+    // optional fields can be cleared with null
+    gherkin: z.string().nullable().optional(),
+    dataset: z.array(z.record(z.string(), z.string())).nullable().optional(),
+  })
+  .strict();
+
+/** Statuses in which a test's content may still change (after sign-off it is frozen). */
+export const EDITABLE_STATUSES = ['Test Writing In Progress', 'Review Needed for Manual Test'] as const;
+
 export type TestCase = z.infer<typeof TestCaseSchema>;
 export type Task = z.infer<typeof TaskSchema>;
 export type DraftTestCase = z.infer<typeof DraftTestCaseSchema>;

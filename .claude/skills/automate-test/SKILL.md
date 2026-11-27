@@ -10,6 +10,7 @@ disable-model-invocation: true
 1. **Check readiness** — `npm run tracker -- show $ARGUMENTS`. Status must be `Manual`
    (signed off) or `Automation In Progress` (resuming). Otherwise stop and explain why.
 2. **Find the task** — `npm run tracker -- list tasks` → the task whose `test` is `$ARGUMENTS`.
+   If none exists, 🚦 create it first: `npm run tracker -- create-task $ARGUMENTS` (approval prompt).
 3. 🚦 **Move to in progress** (each command triggers an approval prompt — that's the human gate):
    - `npm run tracker -- move <AT-ID> "IN PROGRESS" --note "Automation started"`
    - `npm run tracker -- move $ARGUMENTS "Automation In Progress"`

@@ -11,3 +11,6 @@ tests/.temp/*
 .claude/audit.log
 .claude/settings.local.json
 .DS_Store
+
+# Playwright MCP browser logs and snapshots (local, regenerated)
+.playwright-mcp/

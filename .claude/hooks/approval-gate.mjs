@@ -2,7 +2,7 @@
 /**
  * PreToolUse "publish gate" — slide 22: "Humans approve every write. Fail-closed by design."
  *
- *  Tracker writes (Jira/Xray equivalent) ........ ASK   (human approves each one)
+ *  Tracker writes (move/comment/publish/update/create-task/notify) ... ASK   (human approves each one)
  *  Sign-offs .................................... DENY  (human-only: run it yourself with `!`)
  *  Direct edits of tracker/*.json|md ............ DENY  (must go through the validated CLI)
  *  git commit / git push / gh pr create ......... ASK
@@ -12,7 +12,8 @@
  */
 import { guard, decide } from './lib.mjs';
 
-const TRACKER_WRITE = /(npm run (-s )?tracker --|tsx scripts\/tracker\.ts)\s+(move|comment|publish|notify)\b/;
+const TRACKER_WRITE =
+  /(npm run (-s )?tracker --|tsx scripts\/tracker\.ts)\s+(move|comment|publish|notify|update|create-task)\b/;
 const TRACKER_SIGNOFF = /(npm run (-s )?tracker --|tsx scripts\/tracker\.ts)\s+signoff\b/;
 
 await guard(async ({ tool_name, tool_input = {} }) => {

@@ -17,6 +17,8 @@ test('tracker writes require human approval', () => {
   assert.equal(run('approval-gate.mjs', bash('npm run tracker -- move AT-301 "IN PROGRESS"')), 'ask');
   assert.equal(run('approval-gate.mjs', bash('npm run tracker -- publish artifacts/test-cases/x.md')), 'ask');
   assert.equal(run('approval-gate.mjs', bash('npm run tracker -- notify "hi"')), 'ask');
+  assert.equal(run('approval-gate.mjs', bash('npm run tracker -- update SD-T-403 --file fix.json')), 'ask');
+  assert.equal(run('approval-gate.mjs', bash('npm run tracker -- create-task SD-T-404')), 'ask');
 });
 
 test('tracker reads pass through', () => {
