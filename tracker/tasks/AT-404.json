@@ -2,8 +2,14 @@
   "id": "AT-404",
   "testId": "SD-T-404",
   "summary": "Automate SD-T-404",
-  "status": "IN PROGRESS",
-  "comments": [],
+  "status": "DONE",
+  "comments": [
+    {
+      "at": "2026-11-27T00:14:20.338Z",
+      "by": "rolan",
+      "text": "Automated in tests/ui/sorting-SD-T-404.spec.ts. Branch test/SD-T-404-price-low-to-high-sorts-numerically (commit d75c76b). 1/1 passing. PR: artifacts/pr/PR_SUMMARY_SD-T-404.md (local PR mode, no remote)."
+    }
+  ],
   "history": [
     {
       "at": "2026-11-26T23:59:43.792Z",
@@ -17,6 +23,13 @@
       "from": "TO DO",
       "to": "IN PROGRESS",
       "note": "Automation started"
+    },
+    {
+      "at": "2026-11-27T00:14:21.242Z",
+      "by": "rolan",
+      "from": "IN PROGRESS",
+      "to": "DONE",
+      "note": "PR opened"
     }
   ]
 }

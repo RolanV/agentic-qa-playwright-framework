@@ -2,7 +2,7 @@
   "id": "SD-T-404",
   "story": "SD-104",
   "title": "[UI][Sorting] Price low to high sorts numerically",
-  "status": "Automation In Progress",
+  "status": "Automation",
   "priority": "Medium",
   "labels": [
     "ui",
@@ -30,7 +30,9 @@
     }
   ],
   "gherkin": "Given I am on the Products page\nWhen I select \"Price (low to high)\"\nThen prices read $7.99, $9.99, $15.99, $15.99, $29.99, $49.99\nAnd $9.99 comes before $15.99",
-  "automation": null,
+  "automation": {
+    "spec": "tests/ui/sorting-SD-T-404.spec.ts"
+  },
   "signoffs": [
     {
       "role": "Primary QA",
@@ -74,6 +76,13 @@
       "from": "Manual",
       "to": "Automation In Progress",
       "note": "Automation started"
+    },
+    {
+      "at": "2026-11-27T00:14:22.010Z",
+      "by": "rolan",
+      "from": "Automation In Progress",
+      "to": "Automation",
+      "note": "Spec promoted; PR open"
     }
   ]
 }
