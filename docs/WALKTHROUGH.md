@@ -174,6 +174,31 @@ Lab 7 branch and watch CI run on it.
 
 ---
 
+## A real run: SD-104 sorting → SD-T-404 merged (what it looked like)
+
+This is the sequence the author actually followed. Use it as a model for your own run and for interview stories.
+
+| Step | What was done | Gate / lesson |
+|---|---|---|
+| 1 Plan | `test-plan-creator` on SD-100: 20 ACs, 5 sorting ACs untested, 10 scenarios (S1–S10), plus a finding nobody asked for (locked-out user opening `/inventory.html` directly is untested) | Compare the plan with your own reading of the story first |
+| 2 Cases | `test-case-creator` drafted 7 cases; S6 (tie order) and S10 (persistence) held back as product-owner questions | The drafts were validated against the real schema, not just read |
+| 3 Publish | `tracker publish` → SD-T-401…407 | You choose which drafts; approval prompt |
+| 4 Review | `test-case-reviewer`: 401, 402, 404, 405 ready; 403, 406, 407 changes requested (placeholder-only expected result, "either order" tie, undefined state between dataset rows, marker method missing) | Evidence-based: every criticism cites a step |
+| Rework | New `update` command; 3 tests rewritten; earlier sign-offs on 403 and 406 were **reset** | An edit invalidates approvals |
+| Setup | New `create-task` command; tasks AT-401/402/404/405 | A signed-off test needs a ticket to automate against |
+| 5 Automate | `/automate-test SD-T-404`: scaffold → agent implements → green 3× → independently re-run and read by the orchestrator | Verify, don't trust the report |
+| 6 Fidelity | `coverage-fidelity` (read-only): **FIXED**; confirmed the test would fail if prices sorted as text | Ask "could this test fail?" |
+| Promote | `promote-test`: banned patterns, ESLint, green 3× → `tests/ui/sorting-SD-T-404.spec.ts` | The ESLint step was added after this run exposed that the gate didn't lint |
+| 7 PR | `/pr-review` PASS → `/pr-summary` → `/branch-creator` (user-triggered) → PR #1 | Branch must be self-consistent: the SD-T-404 tracker record had to ship with it or CI's `validate` would fail |
+| 8 Close | `/close-out`: task DONE, test Automation, mock Slack post | Four approved writes |
+| Merge | CI green (5 jobs) → **human merges** | Agents never merge |
+
+Mistakes worth remembering (each one was caught by a check, not by luck): a unit test that depended on live
+tracker data, a checklist box ticked before the check was run, a PR opened with an empty description after a
+failed command in a chain, and a promotion gate that claimed to lint but didn't.
+
+---
+
 ## Reset to the starting state
 Run these **yourself** (the guard blocks agents from destructive git commands):
 ```bash

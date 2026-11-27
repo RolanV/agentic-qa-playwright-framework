@@ -38,7 +38,7 @@ Each practice below says **what** the repo does, **why**, and **where** to see i
 | **Humans approve every write** | AI drafts; accountability stays with people | `settings.json` `ask` rules |
 | **Fail-closed guards, tested** | A broken guard must block, not allow. Guards are code, so they get tests | `.claude/hooks/` |
 | **Defence in depth** | Prompt rules + permission rules + hooks + script validation; any single layer can fail | sections 4–5 of HOW-IT-WORKS |
-| **Sandbox for generated code** | AI output is untrusted until proven: `.temp` → green 3× → promote | `promote-test.ts` |
+| **Sandbox for generated code** | AI output is untrusted until proven: `.temp` → ESLint → green 3× → promote | `promote-test.ts` |
 | **Independent verification** | The agent that wrote the spec doesn't grade it: the fidelity agent and the coordinator re-run it | `coverage-fidelity`, `/automate-test` step 5 |
 | **Never weaken assertions to pass** | Otherwise "green" means nothing; app ≠ requirement is a *finding* | `CLAUDE.md` rule 2, `heal-test` |
 | **Reuse before write** | Prevents near-duplicate page objects (the most common AI test-code smell) | agent phase 2 |
@@ -52,6 +52,6 @@ Each practice below says **what** the repo does, **why**, and **where** to see i
 - ❌ AI commits a test that "passes" because an assertion was loosened → fidelity agent + `heal-test` rules + review checklist
 - ❌ AI edits ticket JSON to skip a workflow step → hook denies direct edits; CLI enforces transitions
 - ❌ AI merges its own PR → `gh pr merge` denied in both settings and hook
-- ❌ Flaky generated test lands in the suite → `promote-test` requires `--repeat-each=3`
+- ❌ Flaky generated test lands in the suite → `promote-test` requires ESLint-clean code and `--repeat-each=3`
 - ❌ Hallucinated selectors → MCP exploration + "never guess locators" rule
 - ❌ Secrets leak into context → `.env` read denied; `.env.example` documents variable names
