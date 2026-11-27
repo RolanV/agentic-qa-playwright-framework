@@ -12,6 +12,8 @@ export class InventoryPage extends BasePage {
   readonly sortSelect: Locator;
   /** Visible label of the sort dropdown (the span rendered over the native <select>). */
   readonly activeSortOption: Locator;
+  /** The <option> elements of the native sort <select>, in DOM (= displayed) order. */
+  readonly sortOptions: Locator;
 
   constructor(page: Page) {
     super(page);
@@ -20,6 +22,7 @@ export class InventoryPage extends BasePage {
     this.itemPrices = page.getByTestId('inventory-item-price');
     this.sortSelect = page.getByTestId('product-sort-container');
     this.activeSortOption = page.getByTestId('active-option');
+    this.sortOptions = this.sortSelect.getByRole('option');
   }
 
   /** Scope to one product card by its visible name — robust to re-ordering and new products. */

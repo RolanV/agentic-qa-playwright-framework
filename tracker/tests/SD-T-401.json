@@ -2,7 +2,7 @@
   "id": "SD-T-401",
   "story": "SD-104",
   "title": "[UI][Sorting] Sort dropdown offers the four sort options",
-  "status": "Manual",
+  "status": "Automation In Progress",
   "priority": "Low",
   "labels": [
     "ui",
@@ -59,6 +59,13 @@
       "by": "rolanvataev",
       "from": "Review Needed for Manual Test",
       "to": "Manual"
+    },
+    {
+      "at": "2026-11-27T21:28:57.116Z",
+      "by": "rolan",
+      "from": "Manual",
+      "to": "Automation In Progress",
+      "note": "Automation started"
     }
   ]
 }

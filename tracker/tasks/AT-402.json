@@ -2,7 +2,7 @@
   "id": "AT-402",
   "testId": "SD-T-402",
   "summary": "Automate SD-T-402",
-  "status": "TO DO",
+  "status": "IN PROGRESS",
   "comments": [],
   "history": [
     {
@@ -10,6 +10,13 @@
       "by": "rolan",
       "to": "TO DO",
       "note": "Created for SD-T-402"
+    },
+    {
+      "at": "2026-11-27T20:41:25.121Z",
+      "by": "rolan",
+      "from": "TO DO",
+      "to": "IN PROGRESS",
+      "note": "Automation started"
     }
   ]
 }

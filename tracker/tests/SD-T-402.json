@@ -2,7 +2,7 @@
   "id": "SD-T-402",
   "story": "SD-104",
   "title": "[UI][Sorting] Products are sorted by name A to Z by default",
-  "status": "Manual",
+  "status": "Automation In Progress",
   "priority": "Low",
   "labels": [
     "ui",
@@ -59,6 +59,13 @@
       "by": "rolanvataev",
       "from": "Review Needed for Manual Test",
       "to": "Manual"
+    },
+    {
+      "at": "2026-11-27T20:41:25.731Z",
+      "by": "rolan",
+      "from": "Manual",
+      "to": "Automation In Progress",
+      "note": "Automation started"
     }
   ]
 }

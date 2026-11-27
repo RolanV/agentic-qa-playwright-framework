@@ -2,7 +2,7 @@
   "id": "SD-T-405",
   "story": "SD-104",
   "title": "[UI][Sorting] Price high to low sorts numerically",
-  "status": "Manual",
+  "status": "Automation In Progress",
   "priority": "Medium",
   "labels": [
     "ui",
@@ -67,6 +67,13 @@
       "by": "rolanvataev",
       "from": "Review Needed for Manual Test",
       "to": "Manual"
+    },
+    {
+      "at": "2026-11-27T20:46:13.262Z",
+      "by": "rolan",
+      "from": "Manual",
+      "to": "Automation In Progress",
+      "note": "Automation started"
     }
   ]
 }

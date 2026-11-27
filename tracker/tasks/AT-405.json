@@ -2,7 +2,7 @@
   "id": "AT-405",
   "testId": "SD-T-405",
   "summary": "Automate SD-T-405",
-  "status": "TO DO",
+  "status": "IN PROGRESS",
   "comments": [],
   "history": [
     {
@@ -10,6 +10,13 @@
       "by": "rolan",
       "to": "TO DO",
       "note": "Created for SD-T-405"
+    },
+    {
+      "at": "2026-11-27T20:46:12.651Z",
+      "by": "rolan",
+      "from": "TO DO",
+      "to": "IN PROGRESS",
+      "note": "Automation started"
     }
   ]
 }
