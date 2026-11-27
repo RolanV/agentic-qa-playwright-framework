@@ -92,7 +92,7 @@ flowchart TB
 | 3 | Publish | `/publish-tests` + `tracker publish` | Drafts → `tracker/tests/<ID>.json` (*Test Writing In Progress*) | **You pick** which drafts; approve each write |
 | 4 | Sign-off | `test-case-reviewer` + **3 humans** | Tests → `artifacts/reviews/…-reviewed.md` → status **Manual** | Sign-offs are human-only (agents are blocked) |
 | 5 | Generate & heal | `/automate-test` + `test-automation-engineer` | Manual test → green `tests/.temp/test-<ID>-<slug>.spec.ts` | Approve task + test moves |
-| 6 | Fidelity | `coverage-fidelity` | Spec + tracker test → `artifacts/fidelity/fidelity-<ID>.md` (FIXED / PARTIALLY FIXED / BLOCKED) | Then `promote-test` (green 3× required) |
+| 6 | Fidelity | `coverage-fidelity` | Spec + tracker test → `artifacts/fidelity/fidelity-<ID>.md` (FIXED / PARTIALLY FIXED / BLOCKED) | Then `promote-test` (ESLint clean + green 3× required) |
 | 7 | Review & PR | `/pr-review` → `/fix-review` → `/pr-summary` → `/branch-creator` | Code → `PR_REVIEW_<ID>.md`, `PR_SUMMARY_<ID>.md`, branch, PR | Approve the review, each git write; **humans merge** |
 | 8 | Close out | `/close-out` | PR → task DONE + comment, test **Automation**, Slack post | Approve each write |
 
@@ -177,7 +177,8 @@ Two mechanisms work together:
 
 **Defence in depth:** even if an agent ignored every rule, the **scripts** themselves refuse invalid
 transitions. For example, `tracker move … Manual` fails without 3 sign-offs, `move … Automation` fails if the
-spec is still in `.temp`, and `promote-test` fails unless the spec is green 3× with no placeholders or hard waits.
+spec is still in `.temp`, and `promote-test` fails unless the spec has no placeholders or hard waits, passes ESLint (with the sandbox
+ignore lifted, because `tests/.temp/` is excluded from the normal lint run), and is green 3× in a row.
 
 > **Trade-off to know (good interview point):** the hooks match command text with regular expressions, so
 > they are deliberately conservative. While building this repo, the gate blocked a shell command whose
@@ -216,6 +217,20 @@ stateDiagram-v2
 ```
 
 Task board: `TO DO → IN PROGRESS → DONE`.
+
+**Commands that change the tracker** (all gated: the approval-gate hook and `settings.json` ask first):
+
+| Command | What it does | Rules the code enforces |
+|---|---|---|
+| `publish <file> --select …` | Creates tests from the drafts in an artifact (Step 3) | Validates each draft; ids follow the story (SD-104 → SD-T-401…); no duplicate check, so publish once |
+| `move <ID> "<STATUS>"` | Moves a test or task | Only legal transitions; `Manual` needs 3 sign-offs; `Automation` needs a committed spec that contains the test id |
+| `signoff <ID> --role …` | Records one of the 3 sign-offs | **Human-only**: agents are blocked |
+| `update <ID> --file fields.json` | Edits a test's content (title, steps, precondition, gherkin, dataset; `null` clears gherkin/dataset) | Only allowed before sign-off; **resets existing sign-offs** because people approved different content; status, ids and history can't be patched |
+| `create-task <TEST-ID>` | Adds an automation task in `TO DO` | The test must be signed off (Manual or later); one task per test |
+| `comment`, `notify` | Task comment; mock Slack post | none beyond the approval |
+
+`update` and `create-task` were added during the SD-104 practice run (see WALKTHROUGH, "A real run"), when
+review feedback required editing a published test and the board had no task to automate it against.
 
 **Swapping in real Jira/Xray:** replace `scripts/lib/tracker-lib.ts` with a real client (or add an
 Atlassian MCP server). The agents, skills and gates don't change, because they only know the CLI commands.

@@ -3,6 +3,7 @@
  *
  * The ONLY way a generated spec leaves the sandbox. Quality gate:
  *   1. no "NOT AUTOMATED" placeholders, no test.only / waitForTimeout / force:true / page.pause
+ *   1b. ESLint passes (with the sandbox ignore lifted, so generated specs are linted before joining the suite)
  *   2. the spec runs GREEN (3 times in a row with --repeat-each to catch flakiness)
  *   3. then it is moved to tests/ui|api/<feature>-<ID>.spec.ts (+ dataset file)
  * "A failing test is never committed; it stays in tests/.temp/" — slide 16.
@@ -35,6 +36,18 @@ const banned: [RegExp, string][] = [
 const problems = banned.filter(([re]) => re.test(code)).map(([, why]) => why);
 if (problems.length) {
   console.error(`✖ Quality gate failed for ${input}:\n  - ${problems.join('\n  - ')}`);
+  process.exit(1);
+}
+
+// ESLint with the .temp ignore lifted: tests/.temp is ignored by the normal lint run (so scaffolds that
+// intentionally throw don't fail CI), which means this is the only point where a generated spec is linted
+// BEFORE it joins the real suite.
+console.log(`▶ Linting ${input} (ESLint, sandbox ignore lifted)…`);
+const lint = spawnSync('npx', ['eslint', '--no-ignore', input], { cwd: ROOT, encoding: 'utf8' });
+if (lint.status !== 0) {
+  console.error(
+    `✖ ESLint failed for ${input}. It stays in tests/.temp/. Fix these, then promote again:\n${lint.stdout}${lint.stderr}`,
+  );
   process.exit(1);
 }
 
