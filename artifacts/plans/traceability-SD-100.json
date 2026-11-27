@@ -1,0 +1,22 @@
+[
+  { "ac": "SD-101/AC1", "tests": ["SD-T-101"], "automated": true, "risk": "High" },
+  { "ac": "SD-101/AC2", "tests": ["SD-T-102"], "automated": true, "risk": "High" },
+  { "ac": "SD-101/AC3", "tests": ["SD-T-103"], "automated": true, "risk": "Medium" },
+  { "ac": "SD-101/AC4", "tests": ["SD-T-104"], "automated": true, "risk": "Medium" },
+  { "ac": "SD-102/AC1", "tests": ["SD-T-201"], "automated": true, "risk": "Medium" },
+  { "ac": "SD-102/AC2", "tests": ["SD-T-202"], "automated": true, "risk": "Medium" },
+  { "ac": "SD-102/AC3", "tests": ["SD-T-203"], "automated": true, "risk": "Medium" },
+  { "ac": "SD-103/AC1", "tests": ["SD-T-301"], "automated": false, "risk": "High" },
+  { "ac": "SD-103/AC2", "tests": ["SD-T-302"], "automated": false, "risk": "High" },
+  { "ac": "SD-103/AC3", "tests": ["SD-T-301", "SD-T-303"], "automated": false, "risk": "High" },
+  { "ac": "SD-103/AC4", "tests": ["SD-T-303"], "automated": false, "risk": "High" },
+  { "ac": "SD-103/AC5", "tests": ["SD-T-301"], "automated": false, "risk": "High" },
+  { "ac": "SD-104/AC1", "tests": [], "automated": false, "risk": "Low" },
+  { "ac": "SD-104/AC2", "tests": [], "automated": false, "risk": "Low" },
+  { "ac": "SD-104/AC3", "tests": [], "automated": false, "risk": "Medium" },
+  { "ac": "SD-104/AC4", "tests": [], "automated": false, "risk": "Medium" },
+  { "ac": "SD-104/AC5", "tests": [], "automated": false, "risk": "Medium" },
+  { "ac": "SD-100/AC-E1", "tests": ["SD-T-201", "SD-T-203", "SD-T-301"], "automated": false, "risk": "Medium" },
+  { "ac": "SD-100/AC-E2", "tests": ["SD-T-102", "SD-T-103", "SD-T-302"], "automated": false, "risk": "Medium" },
+  { "ac": "SD-100/AC-E3", "tests": ["SD-T-101", "SD-T-102", "SD-T-301"], "automated": false, "risk": "High" }
+]

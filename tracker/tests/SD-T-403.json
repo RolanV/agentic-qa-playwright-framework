@@ -1,0 +1,47 @@
+{
+  "id": "SD-T-403",
+  "story": "SD-104",
+  "title": "[UI][Sorting] Name sort options order all six products in both directions",
+  "status": "Review Needed for Manual Test",
+  "priority": "Medium",
+  "labels": [
+    "ui",
+    "sorting",
+    "regression",
+    "positive"
+  ],
+  "precondition": "Standard user is logged in and is on the Products page showing the default order (Name A to Z). Price sorting is covered by SD-T-404 and SD-T-405.",
+  "steps": [
+    {
+      "action": "Select \"Name (Z to A)\"",
+      "expected": "The dropdown shows \"Name (Z to A)\" and the products are listed in this order: Test.allTheThings() T-Shirt (Red), Sauce Labs Onesie, Sauce Labs Fleece Jacket, Sauce Labs Bolt T-Shirt, Sauce Labs Bike Light, Sauce Labs Backpack"
+    },
+    {
+      "action": "Select \"Name (A to Z)\"",
+      "expected": "The dropdown shows \"Name (A to Z)\" and the original order is restored: Sauce Labs Backpack, Sauce Labs Bike Light, Sauce Labs Bolt T-Shirt, Sauce Labs Fleece Jacket, Sauce Labs Onesie, Test.allTheThings() T-Shirt (Red)"
+    }
+  ],
+  "gherkin": "Given I am on the Products page with the default order\nWhen I select \"Name (Z to A)\"\nThen the six products are listed in reverse alphabetical order\nWhen I select \"Name (A to Z)\"\nThen the original alphabetical order is restored",
+  "automation": null,
+  "signoffs": [],
+  "history": [
+    {
+      "at": "2026-11-26T23:09:47.250Z",
+      "by": "rolan",
+      "to": "Test Writing In Progress",
+      "note": "Published from artifacts/test-cases/test-cases-SD-104.md (TC-3)"
+    },
+    {
+      "at": "2026-11-26T23:14:45.413Z",
+      "by": "rolan",
+      "from": "Test Writing In Progress",
+      "to": "Review Needed for Manual Test",
+      "note": "Submitted for review"
+    },
+    {
+      "at": "2026-11-26T23:32:15.226Z",
+      "by": "rolan",
+      "note": "Edited: title, precondition, steps, gherkin, dataset (2 sign-off(s) reset) - Review feedback applied"
+    }
+  ]
+}

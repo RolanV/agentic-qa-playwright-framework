@@ -1,0 +1,62 @@
+[
+  {
+    "ac": "SD-104/AC3",
+    "text": "Choosing an option re-orders the list immediately, without a page reload.",
+    "issue": "\"Immediately\" has no measurable threshold; \"without a page reload\" is an implementation detail that needs a defined observable (no navigation event, URL unchanged, page state such as scroll/cart preserved).",
+    "question": "What is the acceptable response time for \"immediately\" (or is it simply synchronous with the selection)? Is 'no full document navigation / URL unchanged' the accepted way to verify 'no page reload'?"
+  },
+  {
+    "ac": "SD-104/AC4",
+    "text": "Price sorting is numeric (e.g. $7.99 comes before $15.99).",
+    "issue": "Tie-breaking is undefined: Bolt T-Shirt and Red T-Shirt are both $15.99. Also unclear whether price is compared as a number from the displayed string (no thousands separators/currency variants are in the catalogue).",
+    "question": "For items with equal price, what order is expected (stable/catalogue order, or by name)? Should the test assert the full order or only the price sequence being non-decreasing/non-increasing?"
+  },
+  {
+    "ac": "SD-104/AC1",
+    "text": "The sort dropdown offers: Name (A to Z), Name (Z to A), Price (low to high), Price (high to low).",
+    "issue": "Exact visible labels vs. spelling and option order are not specified; unclear whether 'offers' means exactly these four and no others.",
+    "question": "Must the dropdown contain exactly these four options in this order, with this exact label text?"
+  },
+  {
+    "ac": "SD-104/AC2",
+    "text": "Default order is Name (A to Z).",
+    "issue": "Unclear whether the dropdown must also show 'Name (A to Z)' as selected, and whether default applies after navigating back from cart or re-login (sort persistence is unspecified).",
+    "question": "Is the selected sort expected to persist when navigating to the cart and back, or after logout/login, or does it always reset to the default?"
+  },
+  {
+    "ac": "SD-104/AC5",
+    "text": "The chosen sort does not change the cart contents.",
+    "issue": "Does not say what is observed: badge count, button state (Add/Remove) of each item after re-order, or cart page content.",
+    "question": "Which observables define 'cart contents unchanged' (badge, per-item Remove buttons, cart page list)?"
+  },
+  {
+    "ac": "SD-100/AC-E1",
+    "text": "Every page after login shows the cart badge with the current item count.",
+    "issue": "Conflicts with observed behaviour: the badge is hidden when the count is 0 (SD-T-301 expects no badge after Finish). 'Every page' scope (checkout steps, complete page) is not listed.",
+    "question": "Should the badge be hidden or show 0 for an empty cart? Which pages are in scope (inventory, cart, checkout step 1/2, complete)?"
+  },
+  {
+    "ac": "SD-100/AC-E2",
+    "text": "Error messages are shown inline and never navigate away from the current form.",
+    "issue": "'Error messages' scope is open (login, checkout, any other); 'never' needs a defined set of error triggers.",
+    "question": "Is the scope limited to the login form and checkout step 1 errors?"
+  },
+  {
+    "ac": "SD-100/AC-E3",
+    "text": "The whole journey works for `standard_user`; `locked_out_user` can never get past login.",
+    "issue": "'Can never get past login' implies direct-URL access to /inventory.html as locked_out_user (or unauthenticated) must be blocked; no AC states this explicitly. Tests exist only for the error message.",
+    "question": "Is direct navigation to /inventory.html without a valid session required to redirect to login? Is the expected behaviour documented?"
+  },
+  {
+    "ac": "SD-103/AC4",
+    "text": "Item total = sum of item prices; Tax = 8% of item total (rounded to cents); Total = Item total + Tax.",
+    "issue": "Rounding mode (half-up vs. banker's) and whether Total uses rounded or unrounded tax are not stated. Existing test uses one data point only.",
+    "question": "What rounding rule applies at exactly half-cents, and is Total computed from rounded Tax?"
+  },
+  {
+    "ac": "SD-102/AC3",
+    "text": "Cart contents persist while navigating between inventory and cart.",
+    "issue": "Persistence across page reload or logout/login is unspecified (app-map: cart lives in localStorage).",
+    "question": "Is persistence across page reload, new tab, or logout/login in scope?"
+  }
+]

@@ -1,0 +1,64 @@
+{
+  "id": "SD-T-402",
+  "story": "SD-104",
+  "title": "[UI][Sorting] Products are sorted by name A to Z by default",
+  "status": "Manual",
+  "priority": "Low",
+  "labels": [
+    "ui",
+    "sorting",
+    "regression",
+    "positive"
+  ],
+  "precondition": "Standard user has just logged in and is on the Products page; no sort option has been chosen.",
+  "steps": [
+    {
+      "action": "Read the selected value of the sort dropdown",
+      "expected": "The dropdown shows \"Name (A to Z)\""
+    },
+    {
+      "action": "Read the product names from top to bottom",
+      "expected": "Order is: Sauce Labs Backpack, Sauce Labs Bike Light, Sauce Labs Bolt T-Shirt, Sauce Labs Fleece Jacket, Sauce Labs Onesie, Test.allTheThings() T-Shirt (Red)"
+    }
+  ],
+  "gherkin": "Given I have just logged in as a standard user\nThen the sort dropdown shows \"Name (A to Z)\"\nAnd the six products are listed alphabetically by name",
+  "automation": null,
+  "signoffs": [
+    {
+      "role": "Primary QA",
+      "by": "you",
+      "at": "2026-11-26T23:27:10.096Z"
+    },
+    {
+      "role": "Developer",
+      "by": "dev",
+      "at": "2026-11-26T23:27:22.864Z"
+    },
+    {
+      "role": "Second QA",
+      "by": "peer",
+      "at": "2026-11-26T23:29:52.731Z"
+    }
+  ],
+  "history": [
+    {
+      "at": "2026-11-26T23:09:47.250Z",
+      "by": "rolan",
+      "to": "Test Writing In Progress",
+      "note": "Published from artifacts/test-cases/test-cases-SD-104.md (TC-2)"
+    },
+    {
+      "at": "2026-11-26T23:14:44.812Z",
+      "by": "rolan",
+      "from": "Test Writing In Progress",
+      "to": "Review Needed for Manual Test",
+      "note": "Submitted for review"
+    },
+    {
+      "at": "2026-11-26T23:56:51.597Z",
+      "by": "rolanvataev",
+      "from": "Review Needed for Manual Test",
+      "to": "Manual"
+    }
+  ]
+}

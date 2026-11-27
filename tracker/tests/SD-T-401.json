@@ -1,0 +1,64 @@
+{
+  "id": "SD-T-401",
+  "story": "SD-104",
+  "title": "[UI][Sorting] Sort dropdown offers the four sort options",
+  "status": "Manual",
+  "priority": "Low",
+  "labels": [
+    "ui",
+    "sorting",
+    "regression",
+    "positive"
+  ],
+  "precondition": "Standard user is logged in and is on the Products page.",
+  "steps": [
+    {
+      "action": "Open the sort dropdown on the Products page",
+      "expected": "The dropdown lists exactly 4 options"
+    },
+    {
+      "action": "Read the option labels from top to bottom",
+      "expected": "Labels in order are: \"Name (A to Z)\", \"Name (Z to A)\", \"Price (low to high)\", \"Price (high to low)\""
+    }
+  ],
+  "gherkin": "Given I am on the Products page\nWhen I open the sort dropdown\nThen I see exactly the options \"Name (A to Z)\", \"Name (Z to A)\", \"Price (low to high)\" and \"Price (high to low)\" in that order",
+  "automation": null,
+  "signoffs": [
+    {
+      "role": "Primary QA",
+      "by": "you",
+      "at": "2026-11-26T23:24:59.238Z"
+    },
+    {
+      "role": "Developer",
+      "by": "dev",
+      "at": "2026-11-26T23:25:24.193Z"
+    },
+    {
+      "role": "Second QA",
+      "by": "peer",
+      "at": "2026-11-26T23:25:38.516Z"
+    }
+  ],
+  "history": [
+    {
+      "at": "2026-11-26T23:09:47.248Z",
+      "by": "rolan",
+      "to": "Test Writing In Progress",
+      "note": "Published from artifacts/test-cases/test-cases-SD-104.md (TC-1)"
+    },
+    {
+      "at": "2026-11-26T23:14:44.204Z",
+      "by": "rolan",
+      "from": "Test Writing In Progress",
+      "to": "Review Needed for Manual Test",
+      "note": "Submitted for review"
+    },
+    {
+      "at": "2026-11-26T23:25:55.713Z",
+      "by": "rolanvataev",
+      "from": "Review Needed for Manual Test",
+      "to": "Manual"
+    }
+  ]
+}

@@ -1,0 +1,72 @@
+{
+  "id": "SD-T-405",
+  "story": "SD-104",
+  "title": "[UI][Sorting] Price high to low sorts numerically",
+  "status": "Manual",
+  "priority": "Medium",
+  "labels": [
+    "ui",
+    "sorting",
+    "regression",
+    "boundary"
+  ],
+  "precondition": "Standard user is logged in and is on the Products page showing the default order.",
+  "steps": [
+    {
+      "action": "Select \"Price (high to low)\"",
+      "expected": "The dropdown shows \"Price (high to low)\""
+    },
+    {
+      "action": "Read the prices from top to bottom",
+      "expected": "Prices are: $49.99, $29.99, $15.99, $15.99, $9.99, $7.99"
+    },
+    {
+      "action": "Compare the position of Sauce Labs Bike Light ($9.99) with the two $15.99 products",
+      "expected": "Sauce Labs Bike Light is listed after both Sauce Labs Bolt T-Shirt and Test.allTheThings() T-Shirt (Red) (a text-based sort would place \"$9.99\" before \"$15.99\")"
+    },
+    {
+      "action": "Check the last product in the list",
+      "expected": "Sauce Labs Onesie ($7.99) is last"
+    }
+  ],
+  "gherkin": "Given I am on the Products page\nWhen I select \"Price (high to low)\"\nThen prices read $49.99, $29.99, $15.99, $15.99, $9.99, $7.99\nAnd $9.99 comes after both $15.99 products",
+  "automation": null,
+  "signoffs": [
+    {
+      "role": "Primary QA",
+      "by": "you",
+      "at": "2026-11-26T23:26:43.450Z"
+    },
+    {
+      "role": "Second QA",
+      "by": "peer",
+      "at": "2026-11-26T23:30:21.767Z"
+    },
+    {
+      "role": "Developer",
+      "by": "dev",
+      "at": "2026-11-26T23:30:42.350Z"
+    }
+  ],
+  "history": [
+    {
+      "at": "2026-11-26T23:09:47.251Z",
+      "by": "rolan",
+      "to": "Test Writing In Progress",
+      "note": "Published from artifacts/test-cases/test-cases-SD-104.md (TC-5)"
+    },
+    {
+      "at": "2026-11-26T23:14:46.618Z",
+      "by": "rolan",
+      "from": "Test Writing In Progress",
+      "to": "Review Needed for Manual Test",
+      "note": "Submitted for review"
+    },
+    {
+      "at": "2026-11-26T23:57:11.354Z",
+      "by": "rolanvataev",
+      "from": "Review Needed for Manual Test",
+      "to": "Manual"
+    }
+  ]
+}

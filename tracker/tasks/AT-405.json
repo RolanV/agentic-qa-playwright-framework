@@ -1,0 +1,15 @@
+{
+  "id": "AT-405",
+  "testId": "SD-T-405",
+  "summary": "Automate SD-T-405",
+  "status": "TO DO",
+  "comments": [],
+  "history": [
+    {
+      "at": "2026-11-26T23:59:44.593Z",
+      "by": "rolan",
+      "to": "TO DO",
+      "note": "Created for SD-T-405"
+    }
+  ]
+}

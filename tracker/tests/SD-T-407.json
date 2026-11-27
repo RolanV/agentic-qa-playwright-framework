@@ -1,0 +1,60 @@
+{
+  "id": "SD-T-407",
+  "story": "SD-104",
+  "title": "[UI][Sorting] Changing the sort does not change the cart contents",
+  "status": "Review Needed for Manual Test",
+  "priority": "Medium",
+  "labels": [
+    "ui",
+    "sorting",
+    "cart",
+    "regression",
+    "positive"
+  ],
+  "precondition": "Standard user is logged in on the Products page with an empty cart and the default sort (Name A to Z).",
+  "steps": [
+    {
+      "action": "Add \"Sauce Labs Backpack\" and \"Sauce Labs Onesie\" to the cart",
+      "expected": "The cart badge shows 2; both products show a \"Remove\" button"
+    },
+    {
+      "action": "Select \"Name (Z to A)\"",
+      "expected": "The cart badge still shows 2; \"Remove\" is shown only on Sauce Labs Backpack and Sauce Labs Onesie; the other four products show \"Add to cart\""
+    },
+    {
+      "action": "Select \"Price (low to high)\"",
+      "expected": "The cart badge still shows 2; \"Remove\" is shown only on Sauce Labs Backpack and Sauce Labs Onesie; the other four products show \"Add to cart\""
+    },
+    {
+      "action": "Select \"Price (high to low)\"",
+      "expected": "The cart badge still shows 2; \"Remove\" is shown only on Sauce Labs Backpack and Sauce Labs Onesie; the other four products show \"Add to cart\""
+    },
+    {
+      "action": "Open the cart",
+      "expected": "The cart lists exactly Sauce Labs Backpack ($29.99) and Sauce Labs Onesie ($7.99), quantity 1 each, and the badge shows 2"
+    }
+  ],
+  "gherkin": "Given my cart holds \"Sauce Labs Backpack\" and \"Sauce Labs Onesie\"\nWhen I change the sort through \"Name (Z to A)\", \"Price (low to high)\" and \"Price (high to low)\"\nThen the cart badge always shows 2\nAnd only those two products show \"Remove\"\nAnd the cart page lists the same two products with the same prices",
+  "automation": null,
+  "signoffs": [],
+  "history": [
+    {
+      "at": "2026-11-26T23:09:47.252Z",
+      "by": "rolan",
+      "to": "Test Writing In Progress",
+      "note": "Published from artifacts/test-cases/test-cases-SD-104.md (TC-7)"
+    },
+    {
+      "at": "2026-11-26T23:14:47.896Z",
+      "by": "rolan",
+      "from": "Test Writing In Progress",
+      "to": "Review Needed for Manual Test",
+      "note": "Submitted for review"
+    },
+    {
+      "at": "2026-11-26T23:32:16.704Z",
+      "by": "rolan",
+      "note": "Edited: title, precondition, steps, gherkin, dataset - Review feedback applied"
+    }
+  ]
+}

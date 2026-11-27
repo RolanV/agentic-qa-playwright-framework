@@ -1,0 +1,67 @@
+{
+  "id": "SD-T-406",
+  "story": "SD-104",
+  "title": "[UI][Sorting] Changing the sort does not reload the page",
+  "status": "Review Needed for Manual Test",
+  "priority": "Medium",
+  "labels": [
+    "ui",
+    "sorting",
+    "regression",
+    "positive"
+  ],
+  "precondition": "Standard user is logged in and is on the Products page. The browser DevTools console is open. Assumption: \"immediately\" means the new order is visible with no action beyond choosing the option; a time limit is not tested (pending product owner answer).",
+  "steps": [
+    {
+      "action": "Note the current page URL",
+      "expected": "The URL is the Products page URL"
+    },
+    {
+      "action": "In the DevTools console run: window.__sortMarker = 1",
+      "expected": "The console prints 1. This marker disappears if the page reloads, so it is the proof of no reload (the URL alone is not, because a reload keeps the same URL)"
+    },
+    {
+      "action": "Select \"Price (high to low)\"",
+      "expected": "The list is re-ordered with Sauce Labs Fleece Jacket first, with no further action"
+    },
+    {
+      "action": "Read the URL, then run window.__sortMarker in the console",
+      "expected": "The URL is unchanged and the console prints 1 (the page was not reloaded)"
+    },
+    {
+      "action": "Select \"Name (Z to A)\", then run window.__sortMarker in the console",
+      "expected": "The console prints 1"
+    },
+    {
+      "action": "Select \"Price (low to high)\", then run window.__sortMarker in the console",
+      "expected": "The console prints 1"
+    },
+    {
+      "action": "Select \"Name (A to Z)\", then run window.__sortMarker in the console",
+      "expected": "The console prints 1 after all four options were used"
+    }
+  ],
+  "gherkin": "Given I am on the Products page and have set a page marker\nWhen I select each of the four sort options in turn\nThen the list is re-ordered every time\nAnd the URL is unchanged\nAnd the marker is still set, proving the page was never reloaded",
+  "automation": null,
+  "signoffs": [],
+  "history": [
+    {
+      "at": "2026-11-26T23:09:47.252Z",
+      "by": "rolan",
+      "to": "Test Writing In Progress",
+      "note": "Published from artifacts/test-cases/test-cases-SD-104.md (TC-6)"
+    },
+    {
+      "at": "2026-11-26T23:14:47.287Z",
+      "by": "rolan",
+      "from": "Test Writing In Progress",
+      "to": "Review Needed for Manual Test",
+      "note": "Submitted for review"
+    },
+    {
+      "at": "2026-11-26T23:32:15.978Z",
+      "by": "rolan",
+      "note": "Edited: title, precondition, steps, gherkin (1 sign-off(s) reset) - Review feedback applied"
+    }
+  ]
+}
