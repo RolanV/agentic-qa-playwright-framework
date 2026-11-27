@@ -2,7 +2,7 @@
   "id": "SD-T-401",
   "story": "SD-104",
   "title": "[UI][Sorting] Sort dropdown offers the four sort options",
-  "status": "Manual",
+  "status": "Automation",
   "priority": "Low",
   "labels": [
     "ui",
@@ -22,7 +22,9 @@
     }
   ],
   "gherkin": "Given I am on the Products page\nWhen I open the sort dropdown\nThen I see exactly the options \"Name (A to Z)\", \"Name (Z to A)\", \"Price (low to high)\" and \"Price (high to low)\" in that order",
-  "automation": null,
+  "automation": {
+    "spec": "tests/ui/sorting-SD-T-401.spec.ts"
+  },
   "signoffs": [
     {
       "role": "Primary QA",
@@ -59,6 +61,20 @@
       "by": "rolanvataev",
       "from": "Review Needed for Manual Test",
       "to": "Manual"
+    },
+    {
+      "at": "2026-11-27T21:28:57.116Z",
+      "by": "rolan",
+      "from": "Manual",
+      "to": "Automation In Progress",
+      "note": "Automation started"
+    },
+    {
+      "at": "2026-11-27T21:51:10.826Z",
+      "by": "rolan",
+      "from": "Automation In Progress",
+      "to": "Automation",
+      "note": "Spec promoted; PR open"
     }
   ]
 }
