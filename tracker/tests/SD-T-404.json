@@ -1,0 +1,79 @@
+{
+  "id": "SD-T-404",
+  "story": "SD-104",
+  "title": "[UI][Sorting] Price low to high sorts numerically",
+  "status": "Automation In Progress",
+  "priority": "Medium",
+  "labels": [
+    "ui",
+    "sorting",
+    "regression",
+    "boundary"
+  ],
+  "precondition": "Standard user is logged in and is on the Products page showing the default order.",
+  "steps": [
+    {
+      "action": "Select \"Price (low to high)\"",
+      "expected": "The dropdown shows \"Price (low to high)\""
+    },
+    {
+      "action": "Read the prices from top to bottom",
+      "expected": "Prices are: $7.99, $9.99, $15.99, $15.99, $29.99, $49.99"
+    },
+    {
+      "action": "Compare the positions of Sauce Labs Onesie ($7.99) and the two $15.99 products",
+      "expected": "Sauce Labs Onesie is listed before Sauce Labs Bolt T-Shirt and Test.allTheThings() T-Shirt (Red)"
+    },
+    {
+      "action": "Compare the position of Sauce Labs Bike Light ($9.99) with the two $15.99 products",
+      "expected": "Sauce Labs Bike Light is listed before both $15.99 products (a text-based sort would place \"$15.99\" first)"
+    }
+  ],
+  "gherkin": "Given I am on the Products page\nWhen I select \"Price (low to high)\"\nThen prices read $7.99, $9.99, $15.99, $15.99, $29.99, $49.99\nAnd $9.99 comes before $15.99",
+  "automation": null,
+  "signoffs": [
+    {
+      "role": "Primary QA",
+      "by": "you",
+      "at": "2026-11-26T23:26:32.799Z"
+    },
+    {
+      "role": "Developer",
+      "by": "dev",
+      "at": "2026-11-26T23:27:34.763Z"
+    },
+    {
+      "role": "Second QA",
+      "by": "peer",
+      "at": "2026-11-26T23:30:15.412Z"
+    }
+  ],
+  "history": [
+    {
+      "at": "2026-11-26T23:09:47.251Z",
+      "by": "rolan",
+      "to": "Test Writing In Progress",
+      "note": "Published from artifacts/test-cases/test-cases-SD-104.md (TC-4)"
+    },
+    {
+      "at": "2026-11-26T23:14:46.011Z",
+      "by": "rolan",
+      "from": "Test Writing In Progress",
+      "to": "Review Needed for Manual Test",
+      "note": "Submitted for review"
+    },
+    {
+      "at": "2026-11-26T23:57:00.551Z",
+      "by": "rolanvataev",
+      "from": "Review Needed for Manual Test",
+      "to": "Manual"
+    },
+    {
+      "at": "2026-11-27T00:00:48.878Z",
+      "by": "rolan",
+      "from": "Manual",
+      "to": "Automation In Progress",
+      "note": "Automation started"
+    }
+  ]
+}

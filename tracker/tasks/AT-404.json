@@ -1,0 +1,22 @@
+{
+  "id": "AT-404",
+  "testId": "SD-T-404",
+  "summary": "Automate SD-T-404",
+  "status": "IN PROGRESS",
+  "comments": [],
+  "history": [
+    {
+      "at": "2026-11-26T23:59:43.792Z",
+      "by": "rolan",
+      "to": "TO DO",
+      "note": "Created for SD-T-404"
+    },
+    {
+      "at": "2026-11-27T00:00:48.266Z",
+      "by": "rolan",
+      "from": "TO DO",
+      "to": "IN PROGRESS",
+      "note": "Automation started"
+    }
+  ]
+}

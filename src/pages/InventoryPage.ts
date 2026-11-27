@@ -10,6 +10,8 @@ export class InventoryPage extends BasePage {
   readonly itemNames: Locator;
   readonly itemPrices: Locator;
   readonly sortSelect: Locator;
+  /** Visible label of the sort dropdown (the span rendered over the native <select>). */
+  readonly activeSortOption: Locator;
 
   constructor(page: Page) {
     super(page);
@@ -17,6 +19,7 @@ export class InventoryPage extends BasePage {
     this.itemNames = page.getByTestId('inventory-item-name');
     this.itemPrices = page.getByTestId('inventory-item-price');
     this.sortSelect = page.getByTestId('product-sort-container');
+    this.activeSortOption = page.getByTestId('active-option');
   }
 
   /** Scope to one product card by its visible name — robust to re-ordering and new products. */
